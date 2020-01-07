@@ -1,0 +1,68 @@
+const int pingPin = 7;
+const int led = 12;
+const int buzzer = 9;
+
+void setup() {
+
+  Serial.begin(9600);
+  pinMode(led, OUTPUT);
+  pinMode(buzzer, OUTPUT);
+}
+
+void loop() { 
+
+  long duration, inches, cm;
+
+
+  pinMode(pingPin, OUTPUT);
+  digitalWrite(pingPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(pingPin, HIGH);
+  delayMicroseconds(5);
+  digitalWrite(pingPin, LOW);
+
+
+  pinMode(pingPin, INPUT);
+  duration = pulseIn(pingPin, HIGH);
+
+  
+  inches = microsecondsToInches(duration);
+  cm = microsecondsToCentimeters(duration);
+  
+     if (inches >= 48 && inches < 72) {
+      digitalWrite(buzzer, HIGH);
+      digitalWrite(led, HIGH);
+      delay(100);
+      digitalWrite(buzzer, LOW);
+      digitalWrite(led, LOW);
+      delay(700);
+      
+      } else if (inches < 48) {
+      digitalWrite(buzzer, HIGH);
+      digitalWrite(led, HIGH);
+      delay(100);
+      digitalWrite(buzzer, LOW);
+      digitalWrite(led, LOW);
+      delay(50);
+      
+        } else if (inches > 72) {
+            digitalWrite(buzzer, LOW);
+//            digitalWrite(led, HIGH);
+          } 
+digitalWrite(led, HIGH);
+  Serial.print(inches);
+  Serial.print("in, ");
+  Serial.print(cm);
+  Serial.print("cm");
+  Serial.println();
+  delay(100);
+}
+
+long microsecondsToInches(long microseconds) {
+
+  return microseconds / 74 / 2;
+}
+
+long microsecondsToCentimeters(long microseconds) {
+  return microseconds / 29 / 2;
+}
