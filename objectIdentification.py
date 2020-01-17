@@ -250,15 +250,8 @@ def run_inference_on_image(fn='/home/pi/Desktop/camlive.jpg'):
    #     else:
     #        os.system("/usr/bin/pico2wave -w test.wav 'nothing' | mplayer test.wav")
 
-        # save results
-           #epoch = datetime.datetime.utcfromtimestamp(0)
-           # dt = datetime.datetime.now().strftime("%Y%m%dT%H%M%S")
-           # os.system("cp "+fn+" results/"+dt+".jpg")            
-           # f1=open("results/"+dt+".txt", 'w+')
-            #f1.write(str(human_string))
-            #f1.write(str(score))
-            #f1.write(str(top_k))
-            #f1.close()
+       #    The pico2wave uses a lot of processing space which the RaspberryPi3 fails to accomodate while running Object Identificatin,
+        #   thus the use of the Python's inbuilt TextToSpeech function which is audible and easy to use.
 
 def maybe_download_and_extract():
   """Download and extract model tar file."""
